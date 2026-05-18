@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export default function ShipDetailsPanel() {
-  const { ships, shipments, selectedShipmentId, setSelectedShipment, setFollowVessel } = useShipStore();
+  const { ships, shipments, selectedShipmentId, setSelectedShipment, setFollowVessel, followVessel } = useShipStore();
   const shipment = shipments.find((s) => s.id === selectedShipmentId);
   const ship = ships.find((s) => s.id === shipment?.shipId);
 
@@ -105,6 +105,11 @@ export default function ShipDetailsPanel() {
         </div>
 
         <div className="p-4 bg-secondary/30 border-t">
+          {followVessel && (
+            <div className="mb-3 text-[10px] uppercase tracking-widest text-muted-foreground text-center">
+              Tracking vessel: <span className="font-semibold text-primary">{ship.name}</span>
+            </div>
+          )}
           <button 
             onClick={() => setFollowVessel(true)}
             className="w-full py-2.5 bg-primary text-white rounded text-[10px] font-bold uppercase tracking-widest hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-sm"

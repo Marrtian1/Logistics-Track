@@ -115,15 +115,22 @@ export default function Dashboard() {
 
           {/* Follow Toggle */}
           {selectedShip && (
-            <div className="absolute bottom-6 right-6 z-10">
-              <button 
-                onClick={() => setFollowVessel(!followVessel)}
-                className={`px-4 py-2 rounded shadow-lg text-[10px] font-bold uppercase tracking-widest transition-all ${
-                  followVessel ? 'bg-accent text-white' : 'bg-white text-primary border'
-                }`}
-              >
-                {followVessel ? 'AIS Lock Active' : 'Manual Camera'}
-              </button>
+            <div className="absolute bottom-6 right-6 z-10 space-y-3">
+              {followVessel && (
+                <div className="rounded-full bg-slate-900/90 text-white text-[10px] uppercase tracking-widest px-3 py-2 shadow-lg">
+                  Tracking: {selectedShip.name}
+                </div>
+              )}
+              <div>
+                <button 
+                  onClick={() => setFollowVessel(!followVessel)}
+                  className={`px-4 py-2 rounded shadow-lg text-[10px] font-bold uppercase tracking-widest transition-all ${
+                    followVessel ? 'bg-accent text-white' : 'bg-white text-primary border'
+                  }`}
+                >
+                  {followVessel ? 'AIS Lock Active' : 'Manual Camera'}
+                </button>
+              </div>
             </div>
           )}
 
